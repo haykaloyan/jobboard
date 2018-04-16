@@ -965,27 +965,27 @@
                         </div>
                     </fieldset>
 
-                    <fieldset class="form  fieldset-candidate_photo">
-                        <label for="candidate_photo">Photo
-                            <small>(optional)</small>
-                        </label>
-                        <div class="field">
+                    <%--<fieldset class="form  fieldset-candidate_photo">--%>
+                        <%--<label for="candidate_photo">Photo--%>
+                            <%--<small>(optional)</small>--%>
+                        <%--</label>--%>
+                        <%--<div class="field">--%>
 
-                            <label class="fake-upload-btn">
-                                <div class="job-manager-uploaded-files">
-                                </div>
-                                <input type="file" class="input-text wp-job-manager-file-upload"
-                                       data-file_types="jpg|jpeg|gif|png" name="candidate_photo" id="candidate_photo"
-                                       placeholder=""/>
-                                <div class="upload-btn"><i class="fa fa-upload"></i> Browse</div>
-                            </label>
+                            <%--<label class="fake-upload-btn">--%>
+                                <%--<div class="job-manager-uploaded-files">--%>
+                                <%--</div>--%>
+                                <%--<input type="file" class="input-text wp-job-manager-file-upload"--%>
+                                       <%--data-file_types="jpg|jpeg|gif|png" name="candidate_photo" id="candidate_photo"--%>
+                                       <%--placeholder=""/>--%>
+                                <%--<div class="upload-btn"><i class="fa fa-upload"></i> Browse</div>--%>
+                            <%--</label>--%>
 
 
-                            <small class="description">
-                                Maximum file size: 50 MB.
-                            </small>
-                        </div>
-                    </fieldset>
+                            <%--<small class="description">--%>
+                                <%--Maximum file size: 50 MB.--%>
+                            <%--</small>--%>
+                        <%--</div>--%>
+                    <%--</fieldset>--%>
 
                     <%--<fieldset class="form  fieldset-candidate_video">--%>
                     <%--<label for="candidate_video">Video <small>(optional)</small></label>--%>
