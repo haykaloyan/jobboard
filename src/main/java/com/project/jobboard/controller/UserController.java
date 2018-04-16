@@ -2,6 +2,7 @@ package com.project.jobboard.controller;
 
 import com.project.jobboard.model.*;
 import com.project.jobboard.repository.JobRepository;
+import com.project.jobboard.repository.ResumeRepository;
 import com.project.jobboard.repository.UserRepository;
 import com.project.jobboard.security.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,20 +23,16 @@ import java.io.IOException;
  */
 @Controller
 public class UserController {
-    @Autowired
-    CategoryRepository categoryRepository;
+
     @Autowired
     JobRepository jobRepository;
-
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    ResumeRepository resumeRepository;
+    @Autowired
+    CategoryRepository categoryRepository;
 
-    @RequestMapping(value = "/PostJob", method = RequestMethod.GET)
-    public String postjob(ModelMap modelMap) {
-        modelMap.addAttribute("job", new Job());
-        modelMap.addAttribute("categories", categoryRepository.findAll());
-        return "PostJob";
-    }
 
     @GetMapping(value = "/AddCategory")
     public String addcategory(ModelMap modelMap) {
@@ -50,19 +47,19 @@ public class UserController {
         return "addCategory";
     }
 
-    @PostMapping("/PreviewJob")
-    public String saveUser(@Valid @ModelAttribute("job") Job job, @RequestParam("header_image") MultipartFile multipartFile) throws IOException {
+
+    @PostMapping("/PreviewResume")
+    public String saveResume(@ModelAttribute("resume") Resume resume, @RequestParam("candidate_photo") MultipartFile multipartFile) throws IOException {
         String picName = System.currentTimeMillis() + "_" + multipartFile.getOriginalFilename();
         File file = new File("/home/levon/Downloads/job/jobboard/project_picture/" + picName);
         multipartFile.transferTo(file);
-        job.setHeader_Image(picName);
-        jobRepository.save(job);
+        resume.setCandidate_photo(picName);
+        resumeRepository.save(resume);
         return "redirect:/home";
     }
 
 
-
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    @PostMapping("/addUser")
     public String addUser(@Valid @ModelAttribute("user") User user) {
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userRepository.save(user);
@@ -70,31 +67,39 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/addResume",method = RequestMethod.GET)
-    public String addResume(ModelMap modelMap){
-        modelMap.addAttribute("resume",new Resume());
+    @GetMapping("/addResume")
+    public String addResume(ModelMap modelMap) {
+        modelMap.addAttribute("resume", new Resume());
+        return "SubmitResume";
+    }
+
+    @GetMapping("/submitResume")
+    public String resume(ModelMap modelMap) {
+        modelMap.addAttribute("resume", new Resume());
+        modelMap.addAttribute("categories", categoryRepository.findAll());
         return "SubmitResume";
     }
 
 
-    @RequestMapping(value = "/loginSuccess", method = RequestMethod.GET)
+    @GetMapping("/loginSuccess")
     public String loginsuccess(ModelMap modelMap) {
         CurrentUser currentUser = (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (currentUser.getUser().getUserType() == UserType.EMPLOYER) {
 
             return "usertype/employer";
-        }
-       else return "usertype/candidate";
+        } else return "usertype/candidate";
     }
 
-    @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
+
+    @GetMapping("/loginPage")
     public String loginregistration(ModelMap modelMap) {
         modelMap.addAttribute("user", new User());
         return "loginregister/newlogin";
     }
-   @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public String signup (ModelMap modelMap) {
+
+    @GetMapping("/signup")
+    public String signup(ModelMap modelMap) {
         modelMap.addAttribute("user", new User());
         return "loginregister/signup";
     }

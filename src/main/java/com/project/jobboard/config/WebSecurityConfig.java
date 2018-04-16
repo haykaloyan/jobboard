@@ -15,12 +15,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-@Autowired
-private UserDetailsService userDetailsService;
+    @Autowired
+    private UserDetailsService userDetailsService;
 
 
-@Autowired
-private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -31,9 +31,17 @@ private PasswordEncoder passwordEncoder;
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .and()
-        .authorizeRequests()
+                .logout()
+                .logoutSuccessUrl("/")
+                .and()
+                .authorizeRequests()
                 .antMatchers("/PostJob").hasAuthority("EMPLOYER")
+                .antMatchers("/submitResume").hasAuthority("CANDIDATE")
+                .antMatchers("/my_accaunt/**","/home_employer/**").hasAuthority("EMPLOYER")
+                .antMatchers("/home_candidate/**").hasAuthority("CANDIDATE")
+                .antMatchers("/user_page_candidate").hasAuthority("CANDIDATE")
                 .anyRequest().permitAll();
+
 
     }
 
@@ -45,8 +53,8 @@ private PasswordEncoder passwordEncoder;
                 .passwordEncoder(passwordEncoder);
     }
 
-@Bean
-    public   PasswordEncoder encoder(){
+    @Bean
+    public PasswordEncoder encoder() {
 
         return new BCryptPasswordEncoder();
     }

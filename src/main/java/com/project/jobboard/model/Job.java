@@ -8,15 +8,16 @@ import javax.persistence.*;
 
 /**
  * Created by levon on 2/28/18.
- */@AllArgsConstructor
+ */
+@AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
 @Table(name = "job")
 public class Job {
     @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-@Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private int id;
     @Column
     private String location;
@@ -25,25 +26,25 @@ public class Job {
     @Column
     private String description;
     @Column
-    private  int minsalary;
+    private int minsalary;
     @Column
-    private  int maxsalary;
+    private int maxsalary;
     @Column
     private String header_Image;
     @Column
-    private  int minrate;
+    private int minrate;
     @Column
-    private  int maxrate;
-@Column
+    private int maxrate;
+    @Column
     private String jobtype;
-@Column
-private String companyname;
-@Column
-private String website;
-@Column
-private String fbprofile;
-@Column
-private String logo;
+    @Column
+    private String companyname;
+    @Column
+    private String website;
+    @Column
+    private String fbprofile;
+    @Column
+    private String logo;
 
     @ManyToOne
     Category category;

@@ -19,18 +19,18 @@ import javax.persistence.*;
 @Table(name = "user")
 public class User {
     @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-@Column
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private int id;
-@Column
+    @Column
     private String email;
-@Column
-    private  String password;
-@Column
-    private  String adress;
+    @Column
+    private String password;
+    @Column
+    private String adress;
 
-@Column(name = "user_type")
+    @Column(name = "user_type")
     @Enumerated(EnumType.STRING)
-private UserType userType;
+    private UserType userType;
 
 }

@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @SpringBootApplication
 @EnableWebMvc
-public class JobboardApplication extends WebMvcConfigurerAdapter implements CommandLineRunner {
+public class JobboardApplication extends WebMvcConfigurerAdapter {
     @Autowired
     private UserRepository userRepository;
 
@@ -51,35 +51,5 @@ public class JobboardApplication extends WebMvcConfigurerAdapter implements Comm
         return multipartResolver;
     }
 
-    @Override
-    public void run(String... strings) throws Exception {
-        String email = "gagik@mail.com";
-        User oneuser = userRepository.findUserByEmail(email);
-        if (oneuser == null) {
-           User user=new User();
-            user.setEmail(email);
-            user.setPassword(new BCryptPasswordEncoder().encode("gagik"));
-            user.setAdress("Gyumri");
-            user.setUserType(UserType.EMPLOYER);
-            userRepository.save(user);
-
-        }
-    }
-
-
-//	@Override
-//	public void run(String... strings) throws Exception {
-////		Author user=new Author();
-////		user.setName("Gagik");
-////		user.setSurname("Mkrtchyan");
-////		user.setEmail("gagik@mail.ru");
-////		user.setPassword("boloyuki");
-////		userRepository.save(user);
-////		System.out.println(user);
-////		userRepository.delete(2);
-////		List<Author> gagik = userRepository.findAllByName("Gagik");
-////		for (Author user : gagik) {
-////			System.out.println(user);
-////		}
 }
 

@@ -11,13 +11,26 @@
 <html lang="en">
 
 <head>
-    <%--<meta charset="utf-8">--%>
-    <%--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">--%>
-    <%--<title>Dark and Light Dropdown Lists</title>--%>
+
     <link rel="stylesheet" href="/loginnew/selectbutton/css/style.css">
-    <%--<!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->--%>
-    <%--<meta charset="UTF-8">--%>
-    <title>Calm breeze login screen</title>
+
+    <meta charset="UTF-8">
+    <title>Sign Up screen</title>
+    <style>
+        a {
+            color: #ffffff; /* Цвет обычной ссылки */
+            text-decoration: none; /* Убираем подчеркивание у ссылок */
+        }
+
+        a:visited {
+            color: #ffffff; /* Цвет посещённой ссылки */
+        }
+
+        a:hover {
+            color: #1730ff; /* Цвет ссылки при наведении на нее курсора мыши */
+            text-decoration: none; /* Добавляем подчеркивание */
+        }
+    </style>
 
 
     <link rel="stylesheet" href="/loginnew/css/style.css">
@@ -33,9 +46,10 @@
         <spring:form action="/addUser" method="post" modelAttribute="user" class="form">
             <spring:input type="email" name="email" placeholder="Username" path="email"/>
             <spring:input type="password" name="password" placeholder="Password" path="password"/>
-        <%--<section class="container">--%>
+            <%--<section class="container">--%>
             <div class="dropdown">
                 <spring:select name="one" class="dropdown-select" path="userType">
+
                     <option value="">Select…</option>
                     <option value="EMPLOYER">For Hire</option>
                     <option value="CANDIDATE">For Job</option>
@@ -43,7 +57,11 @@
             </div>
             <br>
             <button type="submit" class="button button-block">Sign Up</button>
+            <br>
+            <br>
+            <a href="/loginPage">Login</a>
         </spring:form>
+
     </div>
 
     <ul class="bg-bubbles">

@@ -4,8 +4,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
 
 
-
-public class CurrentUser   extends User {
+public class CurrentUser extends User {
     com.project.jobboard.model.User user;
 
     public CurrentUser(com.project.jobboard.model.User user) {
@@ -13,7 +12,7 @@ public class CurrentUser   extends User {
         this.user = user;
     }
 
-    public com.project.jobboard.model.User  getUser() {
+    public com.project.jobboard.model.User getUser() {
         return user;
     }
 

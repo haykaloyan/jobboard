@@ -9,7 +9,8 @@ import javax.persistence.*;
 
 /**
  * Created by levon on 2/28/18.
- */@AllArgsConstructor
+ */
+@AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
@@ -20,26 +21,25 @@ public class Resume {
     @Column
     private int id;
     @Column
-    private String CandidateName;
+    private String candidate_name;
     @Column
-    private  String title;
+    private String title;
     @Column
-    private String Location;
+    private String location;
     @Column
-    private int minrate;
+    private int min_rate;
     @Column
     private String content;
     @Column
     private String skills;
     @Column
-    private String picture;
+    private String candidate_photo;
 
-@ManyToOne
-User user;
+//@ManyToOne
+//User user;
 
     @ManyToOne
     Category category;
-
 
 
 }

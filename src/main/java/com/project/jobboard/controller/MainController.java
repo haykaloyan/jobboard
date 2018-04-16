@@ -18,23 +18,22 @@ import java.io.InputStream;
 public class MainController {
 
     @Autowired
-     private JobRepository jobRepository;
+    private JobRepository jobRepository;
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @GetMapping("/home")
     public String homePage(ModelMap modelMap) {
-    modelMap.addAttribute("jobs",jobRepository.findAll());
+        modelMap.addAttribute("jobs", jobRepository.findAll());
         return "index";
 
-    } @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-
-        return "login";
     }
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+
+    @GetMapping("/")
     public String main() {
         return "redirect:/home";
     }
-    @RequestMapping(value = "/image", method = RequestMethod.GET)
+
+
+    @GetMapping("/image")
     public void getImageAsByteArray(HttpServletResponse response, @RequestParam("header_Image") String fileName) throws IOException {
         InputStream in = new FileInputStream("/home/levon/Downloads/job/jobboard/project_picture/" + fileName);
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);

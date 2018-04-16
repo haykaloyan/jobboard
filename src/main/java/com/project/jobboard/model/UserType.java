@@ -5,5 +5,5 @@ package com.project.jobboard.model;
  */
 public enum UserType {
 
-    CANDIDATE,EMPLOYER
+    CANDIDATE, EMPLOYER
 }
